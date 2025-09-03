@@ -4,12 +4,10 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book = Book.new(list_params)
+    @book = Book.new(book_params)
     if @book.save
-      flash[:notice] = "投稿に成功しました。"
       redirect_to book_path(@book.id)
     else
-      flash.now[:alert] = "投稿に失敗しました。"
       render :new
     end
   end
@@ -35,7 +33,7 @@ class BooksController < ApplicationController
   def destroy
     book = Book.find(params[:id])  
     book.destroy  
-    redirect_to '/books'  
+    redirect_to  '/books'
   end
 
   private
